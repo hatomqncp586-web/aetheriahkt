@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MY MINECRAFT SERVER</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #07090d;
+            color: white;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 7%;
+            background: rgba(7, 9, 13, .85);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid #222;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 900;
+        }
+
+        .logo span {
+            color: #8b5cf6;
+        }
+
+        nav {
+            display: flex;
+            gap: 25px;
+        }
+
+        nav a {
+            color: #aaa;
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            color: white;
+        }
+
+        .button {
+            background: linear-gradient(135deg,#7c3aed,#a855f7);
+            color: white;
+            border: 0;
+            padding: 13px 20px;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .hero {
+            min-height: 800px;
+            padding: 150px 8% 80px;
+            display: flex;
+            align-items: center;
+
+            background:
+                radial-gradient(circle at 70% 30%, #6335d044, transparent 35%),
+                radial-gradient(circle at 20% 80%, #0066ff22, transparent 30%),
+                #07090d;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .online {
+            display: inline-block;
+            padding: 8px 15px;
+            border: 1px solid #29313e;
+            background: #10151d;
+            border-radius: 30px;
+            color: #9ca3af;
+            margin-bottom: 25px;
+        }
+
+        .green {
+            display: inline-block;
+            width: 9px;
+            height: 9px;
+            background: #22c55e;
+            border-radius: 50%;
+            box-shadow: 0 0 15px #22c55e;
+            margin-right: 7px;
+        }
+
+        h1 {
+            font-size: clamp(50px,9vw,100px);
+            line-height: .9;
+            letter-spacing: -4px;
+        }
+
+        h1 span {
+            color: #8b5cf6;
+        }
+
+        .hero p {
+            color: #999;
+            font-size: 18px;
+            line-height: 1.7;
+            margin: 30px 0;
+            max-width: 650px;
+        }
+
+        .ip-box {
+            max-width: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #10141b;
+            border: 1px solid #292f3b;
+            border-radius: 12px;
+            padding: 15px;
+        }
+
+        .ip {
+            font-weight: bold;
+        }
+
+        .copy {
+            background: #202632;
+            color: white;
+            border: 0;
+            padding: 11px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .secondary {
+            padding: 14px 22px;
+            border-radius: 10px;
+            background: #161b24;
+            border: 1px solid #303746;
+            color: white;
+            text-decoration: none;
+        }
+
+        section {
+            padding: 100px 8%;
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .title span {
+            color: #8b5cf6;
+            font-weight: bold;
+        }
+
+        .title h2 {
+            font-size: 48px;
+            margin: 10px;
+        }
+
+        .servers,
+        .shop {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 25px;
+        }
+
+        .card {
+            background: #10141b;
+            border: 1px solid #282f3c;
+            border-radius: 18px;
+            padding: 30px;
+            text-align: center;
+            transition: .3s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: #8b5cf6;
+        }
+
+        .icon {
+            font-size: 50px;
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            color: #888;
+            margin: 15px 0;
+            line-height: 1.6;
+        }
+
+        .price {
+            font-size: 28px;
+            font-weight: bold;
+            margin: 20px;
+        }
+
+        footer {
+            padding: 40px 8%;
+            border-top: 1px solid #222;
+            color: #777;
+            text-align: center;
+        }
+
+        @media(max-width:700px) {
+
+            nav {
+                display: none;
+            }
+
+            header {
+                padding: 0 20px;
+            }
+
+            .hero {
+                padding-left: 25px;
+                padding-right: 25px;
+            }
+
+            h1 {
+                font-size: 55px;
+            }
+
+            .servers,
+            .shop {
+                grid-template-columns: 1fr;
+            }
+
+            .ip-box {
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">
+        MY<span>SERVER</span>
+    </div>
+
+    <nav>
+        <a href="#home">Trang chủ</a>
+        <a href="#server">Server</a>
+        <a href="#shop">Shop</a>
+    </nav>
+
+    <button class="button" onclick="copyIP()">
+        CHƠI NGAY
+    </button>
+
+</header>
+
+
+<section class="hero" id="home">
+
+    <div class="hero-content">
+
+        <div class="online">
+            <span class="green"></span>
+            SERVER ONLINE
+        </div>
+
+        <h1>
+            MY<br>
+            <span>SERVER</span>
+        </h1>
+
+        <p>
+            Chào mừng bạn đến với Minecraft Server.
+            Sinh tồn, chiến đấu và khám phá thế giới
+            cùng bạn bè.
+        </p>
+
+        <div class="ip-box">
+
+            <div>
+                <small>SERVER IP</small>
+                <div class="ip" id="serverIP">
+                    45.117.165.173:25565
+                </div>
+            </div>
+
+            <button class="copy" onclick="copyIP()">
+                COPY IP
+            </button>
+
+        </div>
+
+        <div class="actions">
+
+            <button class="button" onclick="copyIP()">
+                🎮 CHƠI NGAY
+            </button>
+
+            <a href="#shop" class="secondary">
+                🛒 SHOP
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section id="server">
+
+    <div class="title">
+
+        <span>MINECRAFT NETWORK</span>
+
+        <h2>CHỌN SERVER</h2>
+
+    </div>
+
+
+    <div class="servers">
+
+        <div class="card">
+
+            <div class="icon">🌲</div>
+
+            <h2>SURVIVAL</h2>
+
+            <p>
+                Sinh tồn, xây dựng và khám phá.
+            </p>
+
+            <button class="button" onclick="copyIP()">
+                VÀO SERVER
+            </button>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">⚔️</div>
+
+            <h2>SMP</h2>
+
+            <p>
+                Chơi cùng bạn bè và cộng đồng.
+            </p>
+
+            <button class="button" onclick="copyIP()">
+                VÀO SERVER
+            </button>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">💰</div>
+
+            <h2>ECONOMY</h2>
+
+            <p>
+                Mua bán, kiếm tiền và xây dựng đế chế.
+            </p>
+
+            <button class="button" onclick="copyIP()">
+                VÀO SERVER
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section id="shop">
+
+    <div class="title">
+
+        <span>STORE</span>
+
+        <h2>SHOP RANK</h2>
+
+    </div>
+
+
+    <div class="shop">
+
+        <div class="card">
+
+            <div class="icon">⭐</div>
+
+            <h2>VIP</h2>
+
+            <p>
+                Rank VIP cơ bản.
+            </p>
+
+            <div class="price">
+                49.000đ
+            </div>
+
+            <button class="button" onclick="buy('VIP')">
+                MUA NGAY
+            </button>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">💎</div>
+
+            <h2>MVP</h2>
+
+            <p>
+                Rank MVP với nhiều quyền lợi.
+            </p>
+
+            <div class="price">
+                99.000đ
+            </div>
+
+            <button class="button" onclick="buy('MVP')">
+                MUA NGAY
+            </button>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">👑</div>
+
+            <h2>LEGEND</h2>
+
+            <p>
+                Rank cao cấp nhất.
+            </p>
+
+            <div class="price">
+                199.000đ
+            </div>
+
+            <button class="button" onclick="buy('LEGEND')">
+                MUA NGAY
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<footer>
+
+    <div class="logo">
+        MY<span>SERVER</span>
+    </div>
+
+    <p>
+        Minecraft Server • 2026
+    </p>
+
+</footer>
+
+
+<script>
+
+function copyIP() {
+
+    const ip = "45.117.165.173:25565";
+
+    navigator.clipboard.writeText(ip);
+
+    alert("Đã copy IP server!");
+
+}
+
+
+function buy(rank) {
+
+    const player =
+        prompt("Nhập tên Minecraft của bạn:");
+
+    if (!player) return;
+
+    alert(
+        "Bạn chọn rank " +
+        rank +
+        ".\n\nTên Minecraft: " +
+        player +
+        "\n\nHệ thống thanh toán sẽ được kết nối sau."
+    );
+
+}
+
+</script>
+
+</body>
+  </html>
